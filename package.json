@@ -3,13 +3,19 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Versioned API platform demo with contract-first design and idempotent retries — built by SYFERON.",
+  "description": "Real Express + SQLite API platform with contract-first design, idempotent retries and a React developer console — built by SYFERON.",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "vite",
+    "server": "node server/index.js",
+    "test": "node --test server/*.test.js",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "express": "^5.3.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

@@ -67,6 +67,12 @@ Repeating that request with the same `Idempotency-Key` replays the original even
 
 These are local demo defaults, not production secrets. Do not deploy them publicly.
 
+## Documentation
+
+- [Architecture](docs/ARCHITECTURE.md) — request lifecycle, storage, pagination, aggregates and deployment
+- [Decisions & tradeoffs](docs/DECISIONS.md) — why it's built this way, known limits and what I'd change at scale
+- [API examples](docs/api-examples.http) — ready-to-run requests for VS Code's REST Client
+
 ## Tests and CI
 
 ```cmd

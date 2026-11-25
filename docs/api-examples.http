@@ -1,0 +1,53 @@
+### Relay API examples — VS Code REST Client format
+### Start the server first: npm run server
+### Replace the token if you set RELAY_API_KEY to something else.
+
+@base = http://localhost:4000
+@token = rly_live_demo
+@key = demo-request-001
+
+### Public health check
+GET {{base}}/v1/health
+
+### OpenAPI contract
+GET {{base}}/v1/openapi.json
+
+### Dashboard aggregate consumed by Atlas Analytics
+GET {{base}}/v1/analytics/dashboard
+Authorization: Bearer {{token}}
+
+### List events (first page)
+GET {{base}}/v1/events?limit=20
+Authorization: Bearer {{token}}
+
+### Create an event
+POST {{base}}/v1/events
+Authorization: Bearer {{token}}
+Content-Type: application/json
+Idempotency-Key: {{key}}
+
+{
+  "type": "event.created",
+  "data": { "source": "rest-client", "order": 1042 }
+}
+
+### Repeat the POST above with the same Idempotency-Key:
+### the original event is replayed instead of duplicated.
+
+### Retrieve one event (copy an id from a list response)
+GET {{base}}/v1/events/evt_seed01
+Authorization: Bearer {{token}}
+
+### Delete an event
+DELETE {{base}}/v1/events/evt_seed01
+Authorization: Bearer {{token}}
+
+### Invalid request — demonstrates the error envelope
+POST {{base}}/v1/events
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "data": {} }
+
+### Unauthorized request — demonstrates 401 shape
+GET {{base}}/v1/events
